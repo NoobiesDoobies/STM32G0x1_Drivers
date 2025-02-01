@@ -171,4 +171,137 @@ typedef struct
 
 #define RCC									((RCC_RegDef_t*)RCC_BASEADDR)
 
+/*
+ Clock Enable and Disable Macros for GPIOx peripherals
+*/
+#define GPIOA_PCLK_EN()			(RCC->IOPENR |= (1 << 0)) // Enable GPIOA port peripheral clock
+#define GPIOB_PCLK_EN()			(RCC->IOPENR |= (1 << 1)) // Enable GPIOB port peripheral clock
+#define GPIOC_PCLK_EN()			(RCC->IOPENR |= (1 << 2)) // Enable GPIOC port peripheral clock
+#define GPIOD_PCLK_EN()			(RCC->IOPENR |= (1 << 3)) // Enable GPIOD port peripheral clock
+#define GPIOE_PCLK_EN()			(RCC->IOPENR |= (1 << 4)) // Enable GPIOE port peripheral clock
+#define GPIOF_PCLK_EN()			(RCC->IOPENR |= (1 << 5)) // Enable GPIOF port peripheral clock
+
+#define GPIOA_PCLK_DI()			(RCC->IOPENR &= ~(1 << 0)) // Disable GPIOA port peripheral clock
+#define GPIOB_PCLK_DI()			(RCC->IOPENR &= ~(1 << 1)) // Disable GPIOB port peripheral clock
+#define GPIOC_PCLK_DI()			(RCC->IOPENR &= ~(1 << 2)) // Disable GPIOC port peripheral clock
+#define GPIOD_PCLK_DI()			(RCC->IOPENR &= ~(1 << 3)) // Disable GPIOD port peripheral clock
+#define GPIOE_PCLK_DI()			(RCC->IOPENR &= ~(1 << 4)) // Disable GPIOE port peripheral clock
+#define GPIOF_PCLK_DI()			(RCC->IOPENR &= ~(1 << 5)) // Disable GPIOF port peripheral clock
+
+/*
+ Clock Enable and Disable Macros for DMAx peripherals
+*/
+#define DMA1_PCLK_EN()			(RCC->AHBENR |= (1 << 0)) // Enable DMA1 peripheral clock
+#define DMA2_PCLK_EN()			(RCC->AHBENR |= (1 << 1)) // Enable DMA2 peripheral clock
+
+#define DMA1_PCLK_DI()			(RCC->AHBENR &= ~(1 << 0)) // Disable DMA1 peripheral clock
+#define DMA2_PCLK_DI()			(RCC->AHBENR &= ~(1 << 1)) // Disable DMA2 peripheral clock
+
+/* 
+ Clock Enable and Disable Macros for FLASH peripheral
+*/
+#define FLASH_PCLK_EN()			(RCC->AHBENR |= (1 << 8)) // Enable FLASH peripheral clock
+
+#define FLASH_PCLK_DI()			(RCC->AHBENR &= ~(1 << 8)) // Disable FLASH peripheral clock
+
+/*
+ Clock Enable and Disable Macros for CRC peripheral
+*/
+#define CRC_PCLK_EN()			(RCC->AHBENR |= (1 << 12)) // Enable CRC peripheral clock
+
+#define CRC_PCLK_DI()			(RCC->AHBENR &= ~(1 << 12)) // Disable CRC peripheral clock
+
+/*
+ Clock Enable and Disable Macros for AES peripheral
+*/
+#define AES_PCLK_EN()			(RCC->AHBENR |= (1 << 16)) // Enable AES peripheral clock
+
+#define AES_PCLK_DI()			(RCC->AHBENR &= ~(1 << 16)) // Disable AES peripheral clock
+
+/*
+ Clock Enable and Disable Macros for RNG peripheral
+*/
+#define RNG_PCLK_EN()			(RCC->AHBENR |= (1 << 18)) // Enable RNG peripheral clock
+
+#define RNG_PCLK_DI()			(RCC->AHBENR &= ~(1 << 18)) // Disable RNG peripheral clock
+
+/*
+ Clock Enable and Disable Macros for I2Cx peripherals
+*/
+#define I2C1_PCLK_EN()			(RCC->APBENR1 |= (1 << 21)) // Enable I2C1 peripheral clock
+#define I2C2_PCLK_EN()			(RCC->APBENR1 |= (1 << 22)) // Enable I2C2 peripheral clock
+#define I2C3_PCLK_EN()			(RCC->APBENR1 |= (1 << 23)) // Enable I2C3 peripheral clock
+
+#define I2C1_PCLK_DI()			(RCC->APBENR1 &= ~(1 << 21)) // Disable I2C1 peripheral clock
+#define I2C2_PCLK_DI()			(RCC->APBENR1 &= ~(1 << 22)) // Disable I2C2 peripheral clock
+#define I2C3_PCLK_DI()			(RCC->APBENR1 &= ~(1 << 23)) // Disable I2C3 peripheral clock
+
+/*
+ Clock Enable and Disable Macros for SPIx peripherals
+*/
+#define SPI2_PCLK_EN()			(RCC->APBENR1 |= (1 << 14)) // Enable SPI2 peripheral clock
+#define SPI3_PCLK_EN()			(RCC->APBENR1 |= (1 << 15)) // Enable SPI3 peripheral clock
+
+#define SPI2_PCLK_DI()			(RCC->APBENR1 &= ~(1 << 14)) // Disable SPI2 peripheral clock
+#define SPI3_PCLK_DI()			(RCC->APBENR1 &= ~(1 << 15)) // Disable SPI3 peripheral clock
+
+/*
+ Clock Enable and Disable Macros for USARTx peripherals
+*/
+#define USART1_PCLK_EN()		(RCC->APBENR2 |= (1 << 14)) // Enable USART1 peripheral clock
+#define USART2_PCLK_EN()		(RCC->APBENR1 |= (1 << 17)) // Enable USART2 peripheral clock
+#define USART3_PCLK_EN()		(RCC->APBENR1 |= (1 << 18)) // Enable USART3 peripheral clock
+#define USART4_PCLK_EN()		(RCC->APBENR1 |= (1 << 19)) // Enable USART4 peripheral clock
+#define USART5_PCLK_EN()		(RCC->APBENR1 |= (1 << 8)) // Enable USART5 peripheral clock
+#define USART6_PCLK_EN()		(RCC->APBENR1 |= (1 << 9)) // Enable USART6 peripheral clock
+
+#define USART1_PCLK_DI()		(RCC->APBENR2 &= ~(1 << 14)) // Disable USART1 peripheral clock
+#define USART2_PCLK_DI()		(RCC->APBENR1 &= ~(1 << 17)) // Disable USART2 peripheral clock
+#define USART3_PCLK_DI()		(RCC->APBENR1 &= ~(1 << 18)) // Disable USART3 peripheral clock
+#define USART4_PCLK_DI()		(RCC->APBENR1 &= ~(1 << 19)) // Disable USART4 peripheral clock
+#define USART5_PCLK_DI()		(RCC->APBENR1 &= ~(1 << 8)) // Disable USART5 peripheral clock
+#define USART6_PCLK_DI()		(RCC->APBENR1 &= ~(1 << 9)) // Disable USART6 peripheral clock
+
+/*
+ Clock Enable and Disable Macros for TIMx peripherals
+*/
+#define TIM1_PCLK_EN()			(RCC->APBENR2 |= (1 << 11)) // Enable TIM1 peripheral clock
+#define TIM2_PCLK_EN()			(RCC->APBENR1 |= (1 << 0)) // Enable TIM2 peripheral clock
+#define TIM3_PCLK_EN()			(RCC->APBENR1 |= (1 << 1)) // Enable TIM3 peripheral clock
+#define TIM4_PCLK_EN()			(RCC->APBENR1 |= (1 << 2)) // Enable TIM4 peripheral clock
+#define TIM6_PCLK_EN()			(RCC->APBENR1 |= (1 << 4)) // Enable TIM6 peripheral clock
+#define TIM7_PCLK_EN()			(RCC->APBENR1 |= (1 << 5)) // Enable TIM7 peripheral clock
+#define TIM15_PCLK_EN()			(RCC->APBENR2 |= (1 << 16)) // Enable TIM14 peripheral clock
+#define TIM16_PCLK_EN()			(RCC->APBENR2 |= (1 << 17)) // Enable TIM16 peripheral clock
+#define TIM17_PCLK_EN()			(RCC->APBENR2 |= (1 << 18)) // Enable TIM17 peripheral clock
+
+#define TIM1_PCLK_DI()			(RCC->APBENR2 &= ~(1 << 11)) // Disable TIM1 peripheral clock
+#define TIM2_PCLK_DI()			(RCC->APBENR1 &= ~(1 << 0)) // Disable TIM2 peripheral clock
+#define TIM3_PCLK_DI()			(RCC->APBENR1 &= ~(1 << 1)) // Disable TIM3 peripheral clock
+#define TIM4_PCLK_DI()			(RCC->APBENR1 &= ~(1 << 2)) // Disable TIM4 peripheral clock
+#define TIM6_PCLK_DI()			(RCC->APBENR1 &= ~(1 << 4)) // Disable TIM6 peripheral clock
+#define TIM7_PCLK_DI()			(RCC->APBENR1 &= ~(1 << 5)) // Disable TIM7 peripheral clock
+#define TIM15_PCLK_DI()			(RCC->APBENR2 &= ~(1 << 16)) // Disable TIM14 peripheral clock
+#define TIM16_PCLK_DI()			(RCC->APBENR2 &= ~(1 << 17)) // Disable TIM16 peripheral clock
+#define TIM17_PCLK_DI()			(RCC->APBENR2 &= ~(1 << 18)) // Disable TIM17 peripheral clock
+
+/*
+ Clock Enable Macros for SYSCFG, COMP, VREFBUF peripheral
+*/
+#define SYSCFG_PCLK_EN()		(RCC->APBENR2 |= (1 << 0)) // Enable SYSCFG peripheral clock
+#define COMP_PCLK_EN()			SYSCFG_PCLK_EN // Enable COMP peripheral clock
+#define VREFBUF_PCLK_EN()		SYSCFG_PCLK_EN // Enable VREFBUF peripheral clock
+
+#define SYSCFG_PCLK_DI()		(RCC->APBENR2 &= ~(1 << 0)) // Disable SYSCFG peripheral clock
+#define COMP_PCLK_DI()			SYSCFG_PCLK_DI // Disable COMP peripheral clock
+#define VREFBUF_PCLK_DI()		SYSCFG_PCLK_DI // Disable VREFBUF peripheral clock
+
+/*
+ Clock Enable and Disable Macros for ADC peripheral
+*/
+#define ADC_PCLK_EN()			(RCC->APBENR2 |= (1 << 20)) // Enable ADC peripheral clock
+#define ADC_PCLK_DI()			(RCC->APBENR2 &= ~(1 << 20)) // Disable ADC peripheral clock
+
+
+/*
 #endif /* INC_STM32G0X1_H_ */
