@@ -13,6 +13,7 @@
 #define INC_STM32G0X1_H_
 
 #include <stdint.h>
+#include <stdio.h>
 
 #define MAIN_FLASH_BASEADDR					0x08000000U // Unsigned base address of Main Flash Memory
 #define SRAM1_BASEADDR						0x20000000U // Unsigned base address of SRAM1
@@ -137,6 +138,55 @@ typedef struct
 #define GPIOD								((GPIO_RegDef_t*)GPIOD_BASEADDR)
 #define GPIOE								((GPIO_RegDef_t*)GPIOE_BASEADDR)
 #define GPIOF								((GPIO_RegDef_t*)GPIOF_BASEADDR)
+
+
+/*
+ * Peripheral register definition structure for EXTI
+ */
+
+typedef struct {
+    volatile uint32_t RTSR1;       	// 0x000 - Rising Trigger Selection Register 1
+    volatile uint32_t FTSR1;       	// 0x004 - Falling Trigger Selection Register 1
+    volatile uint32_t SWIER1;      	// 0x008 - Software Interrupt Event Register 1
+    volatile uint32_t RPR1;        	// 0x00C - Rising Pending Register 1
+    volatile uint32_t FPR1;        	// 0x010 - Falling Pending Register 1
+    uint32_t RESERVED1[5];     		// 0x014 - 0x024 - Reserved Space
+    volatile uint32_t RTSR2;       	// 0x028 - Rising Trigger Selection Register 2
+    volatile uint32_t FTSR2;       	// 0x02C - Falling Trigger Selection Register 2
+    volatile uint32_t SWIER2;      	// 0x030 - Software Interrupt Event Register 2
+    volatile uint32_t RPR2;        	// 0x034 - Rising Pending Register 2
+    volatile uint32_t FPR2;        	// 0x038 - Falling Pending Register 2
+    uint32_t RESERVED2[8];     		// 0x03C - 0x05C - Reserved Space
+    volatile uint32_t EXTICR1;     	// 0x060 - External Interrupt Configuration Register 1
+    volatile uint32_t EXTICR2;     	// 0x064 - External Interrupt Configuration Register 2
+    volatile uint32_t EXTICR3;     	// 0x068 - External Interrupt Configuration Register 3
+    volatile uint32_t EXTICR4;     	// 0x06C - External Interrupt Configuration Register 4
+    uint32_t RESERVED3[4];     		// 0x070 - 0x07C - Reserved Space
+    volatile uint32_t IMR1;        	// 0x080 - Interrupt Mask Register 1
+    volatile uint32_t EMR1;        	// 0x084 - Event Mask Register 1
+    uint32_t RESERVED4[2];     		// 0x088 - 0x08C - Reserved Space
+    volatile uint32_t IMR2;        	// 0x090 - Interrupt Mask Register 2
+    volatile uint32_t EMR2;        	// 0x094 - Event Mask Register 2
+} EXTI_RegDef_t;	
+
+
+#define EXTI								((EXTI_RegDef_t*)EXTI_BASEADDR)
+
+/*
+ * Peripheral register definition structure for SYSCFG
+ */
+
+typedef struct {
+    volatile uint32_t CFGR1;      // 0x000 - SYSCFG configuration register 1
+    uint32_t RESERVED1[5];    // 0x004 - 0x017 (Reserved)
+    volatile uint32_t CFGR2;      // 0x018 - SYSCFG configuration register 2
+    uint32_t RESERVED2[26];   // 0x01C - 0x07F (Reserved)
+    
+    volatile uint32_t ITLINE[32]; // 0x080 - 0x0FC (Interrupt line status registers)
+} SYSCFG_TypeDef;
+
+#define SYSCFG								((SYSCFG_TypeDef*)SYSCFG_BASEADDR)
+
 
 /*
  * Peripheral register definition structure for RCC
