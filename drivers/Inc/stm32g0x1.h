@@ -12,7 +12,7 @@
 #ifndef INC_STM32G0X1_H_
 #define INC_STM32G0X1_H_
 
-#define MAIN_FLASH_BASEADDR						0x08000000U // Unsigned base address of Main Flash Memory
+#define MAIN_FLASH_BASEADDR					0x08000000U // Unsigned base address of Main Flash Memory
 #define SRAM1_BASEADDR						0x20000000U // Unsigned base address of SRAM1
 #define ROM									0x1FFF0000U // Unsigned base address of system memory/ROM
 #define SRAM								SRAM1_BASEADDR
@@ -108,6 +108,21 @@
 #define TIM17_BASEADDR						(APB2PERIPH_BASE + 0x4800)
 #define DBG_BASEADDR						(APB2PERIPH_BASE + 0x5800)
 
-
+/*
+ * GPIO Register Abstraction
+ */
+typedef struct
+{
+	uint32_t MODER; 	// GPIO port mode register	// 00: input, 01: output, 10: alt, 11: analog // 0x00 Offset
+	uint32_t TYPER; 	// GPIO port output type register	//  0: push-pull, 1: open-drain // 0x04 offset
+	uint32_t SPEEDR; 	// GPIO port output speed register // 00: very low, 01: low, 10: high, 11: high speed // 0x08 offset
+	uint32_t PUPDR; 	// GPIO port pull-up/pull-down register // 00: No pull-up, pull-down, 01: pull-up, 10: pull-down, 11: reserved
+	uint32_t IDR; 		// GPIO port input data register 				// 0x10 offset
+	uint32_t ODR; 		// GPIO port output data register 				// 0x14 offset
+	uint32_t BSRR; 		// GPIO port bit set/reset register 			// 0x18 offset
+	uint32_t LCKR; 		// GPIO port configuration lock register 		// 0x1C offset
+	uint32_t AFR[2]; 	// AF[0] : GPIO alternate function low register, AF[1] : GPIO alternate function high register
+	uint32_t BRR; 		// GPIO port bit reset register 				// 0x28 offset
+}GPIO_RegDef_t;
 
 #endif /* INC_STM32G0X1_H_ */

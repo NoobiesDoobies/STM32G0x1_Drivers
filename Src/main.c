@@ -32,6 +32,7 @@ int main(void)
 	initialise_monitor_handles();
 
 	printf("halooo\n");
+	printf("%x\n", GPIOA_BASEADDR);
 
     /* Loop forever */
 	for(;;);
