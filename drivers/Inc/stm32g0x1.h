@@ -5,8 +5,108 @@
  *      Author: carlios
  */
 
+/*
+ * base addresses of Flash and SRAM memories
+ */
+
 #ifndef INC_STM32G0X1_H_
 #define INC_STM32G0X1_H_
+
+#define MAIN_FLASH_BASEADDR						0x08000000U // Unsigned base address of Main Flash Memory
+#define SRAM1_BASEADDR						0x20000000U // Unsigned base address of SRAM1
+#define ROM									0x1FFF0000U // Unsigned base address of system memory/ROM
+#define SRAM								SRAM1_BASEADDR
+
+/*
+ * AHBx and APBx Bus Peripheral base addresses
+ */
+
+#define PERIPH_BASE							0x40000000U // Start at TIM2 Peripheral
+#define APB1PERIPH_BASE						PERIPH_BASE // starts on 0x4000 0000 ends on 0x4000 A7FF
+#define APB2PERIPH_BASE						0x40010000U // Different me
+#define AHB1PERIPH_BASE						0x40020000U // starts on 0x4002 0000 ends on 0x4002 63FF
+#define IOPORTPERIPH_BASE					0x50000000U // Peripheral addresses containing GPIO A-F pins
+
+/*
+ * Base addresses of peripherals which are connected to IOPORT B
+ */
+
+#define GPIOA_BASEADDR						(IOPORTPERIPH_BASE + 0x0000)
+#define GPIOB_BASEADDR						(IOPORTPERIPH_BASE + 0x0400)
+#define GPIOC_BASEADDR						(IOPORTPERIPH_BASE + 0x0800)
+#define GPIOD_BASEADDR						(IOPORTPERIPH_BASE + 0x0C00)
+#define GPIOE_BASEADDR						(IOPORTPERIPH_BASE + 0x1000)
+#define GPIOF_BASEADDR						(IOPORTPERIPH_BASE + 0x1400)
+
+/*
+ * Base addresses of peripherals which are connected to AHB Bus
+ */
+
+#define DMA1_BASEADDR						(AHB1PERIPH_BASE + 0x0000)
+#define DMA2_BASEADDR						(AHB1PERIPH_BASE + 0x0400)
+#define DMAMUX_BASEADDR						(AHB1PERIPH_BASE + 0x0800)
+#define RCC_BASEADDR						(AHB1PERIPH_BASE + 0x1000)
+#define EXTI_BASEADDR						(AHB1PERIPH_BASE + 0x1800)
+#define FLASH_BASEADDR						(AHB1PERIPH_BASE + 0x2000)
+#define CRC_BASEADDR						(AHB1PERIPH_BASE + 0x3000)
+#define RNG_BASEADDR						(AHB1PERIPH_BASE + 0x5000)
+#define AES_BASEADDR						(AHB1PERIPH_BASE + 0x6000)
+
+/*
+ * Base addresses of peripherals which are connected to the APB1 Bus
+ */
+
+#define TIM2_BASEADDR						(APB1PERIPH_BASE + 0x0000)
+#define TIM3_BASEADDR						(APB1PERIPH_BASE + 0x0400)
+#define TIM4_BASEADDR						(APB1PERIPH_BASE + 0x0800)
+#define TIM6_BASEADDR						(APB1PERIPH_BASE + 0x1000)
+#define TIM7_BASEADDR						(APB1PERIPH_BASE + 0x1400)
+#define TIM14_BASEADDR						(APB1PERIPH_BASE + 0x2000)
+#define RTC_BASEADDR						(APB1PERIPH_BASE + 0x2800)
+#define WWDG_BASEADDR						(APB1PERIPH_BASE + 0x2C00)
+#define IWDG_BASEADDR						(APB1PERIPH_BASE + 0x3000)
+#define SPI2_BASEADDR						(APB1PERIPH_BASE + 0x3800)
+#define SPI3_BASEADDR						(APB1PERIPH_BASE + 0x3C00)
+#define USART2_BASEADDR						(APB1PERIPH_BASE + 0x4400)
+#define USART3_BASEADDR						(APB1PERIPH_BASE + 0x4800)
+#define USART4_BASEADDR						(APB1PERIPH_BASE + 0x4C00)
+#define USART5_BASEADDR						(APB1PERIPH_BASE + 0x5000)
+#define I2C1_BASEADDR						(APB1PERIPH_BASE + 0x5400)
+#define I2C2_BASEADDR						(APB1PERIPH_BASE + 0x5800)
+#define USB_BASEADDR						(APB1PERIPH_BASE + 0x5C00)
+#define FDCAN1_BASEADDR						(APB1PERIPH_BASE + 0x6400)
+#define FDCAN2_BASEADDR						(APB1PERIPH_BASE + 0x6800)
+#define CRS_BASEADDR						(APB1PERIPH_BASE + 0x6C00)
+#define PWR_BASEADDR						(APB1PERIPH_BASE + 0x7000)
+#define DAC_BASEADDR						(APB1PERIPH_BASE + 0x7400)
+#define CEC_BASEADDR						(APB1PERIPH_BASE + 0x7800)
+#define LPTIM1_BASEADDR						(APB1PERIPH_BASE + 0x7C00)
+#define LPUART1_BASEADDR					(APB1PERIPH_BASE + 0x8000)
+#define LPUART2_BASEADDR					(APB1PERIPH_BASE + 0x8400)
+#define I2C3_BASEADDR						(APB1PERIPH_BASE + 0x8800)
+#define LPTIM2_BASEADDR						(APB1PERIPH_BASE + 0x9400)
+#define USB_RAM1_BASEADDR					(APB1PERIPH_BASE + 0x9800)
+#define USB_RAM2_BASEADDR					(APB1PERIPH_BASE + 0x9C00)
+#define UCPD1_BASEADDR						(APB1PERIPH_BASE + 0xA000)
+#define UCPD2_BASEADDR						(APB1PERIPH_BASE + 0xA400)
+#define TAMP_BASEADDR						(APB1PERIPH_BASE + 0xB000)
+#define FDCAN_BASEADDR						(APB1PERIPH_BASE + 0xB400)
+
+/*
+ * Base addresses of peripherals which are connected to the APB2 Bus
+ */
+#define SYSCFG_BASEADDR						(APB2PERIPH_BASE + 0x0000)
+#define VREFBUF_BASEADDR					(APB2PERIPH_BASE + 0x0030)
+#define SYSCFG_ITLINE_BASEADDR				(APB2PERIPH_BASE + 0x0080)
+#define COMP_BASEADDR						(APB2PERIPH_BASE + 0x0200)
+#define ADC_BASEADDR						(APB2PERIPH_BASE + 0x2400)
+#define TIM1_BASEADDR						(APB2PERIPH_BASE + 0x2C00)
+#define USART1_BASEADDR						(APB2PERIPH_BASE + 0x3800)
+#define USART6_BASEADDR						(APB2PERIPH_BASE + 0x3C00)
+#define TIM15_BASEADDR						(APB2PERIPH_BASE + 0x4000)
+#define TIM16_BASEADDR						(APB2PERIPH_BASE + 0x4400)
+#define TIM17_BASEADDR						(APB2PERIPH_BASE + 0x4800)
+#define DBG_BASEADDR						(APB2PERIPH_BASE + 0x5800)
 
 
 
