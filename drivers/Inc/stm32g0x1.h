@@ -12,6 +12,8 @@
 #ifndef INC_STM32G0X1_H_
 #define INC_STM32G0X1_H_
 
+#include <stdint.h>
+
 #define MAIN_FLASH_BASEADDR					0x08000000U // Unsigned base address of Main Flash Memory
 #define SRAM1_BASEADDR						0x20000000U // Unsigned base address of SRAM1
 #define ROM									0x1FFF0000U // Unsigned base address of system memory/ROM
@@ -114,8 +116,8 @@
 typedef struct
 {
 	volatile uint32_t MODER; 	// GPIO port mode register	// 00: input, 01: output, 10: alt, 11: analog // 0x00 Offset
-	volatile uint32_t TYPER; 	// GPIO port output type register	//  0: push-pull, 1: open-drain // 0x04 offset
-	volatile uint32_t SPEEDR; 	// GPIO port output speed register // 00: very low, 01: low, 10: high, 11: high speed // 0x08 offset
+	volatile uint32_t OTYPER; 	// GPIO port output type register	//  0: push-pull, 1: open-drain // 0x04 offset
+	volatile uint32_t OSPEEDR; 	// GPIO port output speed register // 00: very low, 01: low, 10: high, 11: high speed // 0x08 offset
 	volatile uint32_t PUPDR; 	// GPIO port pull-up/pull-down register // 00: No pull-up, pull-down, 01: pull-up, 10: pull-down, 11: reserved
 	volatile uint32_t IDR; 		// GPIO port input data register 				// 0x10 offset
 	volatile uint32_t ODR; 		// GPIO port output data register 				// 0x14 offset
@@ -303,6 +305,17 @@ typedef struct
 #define ADC_PCLK_DI()			(RCC->APBENR2 &= ~(1 << 20)) // Disable ADC peripheral clock
 
 
+/*
+ Macros to reset GPIOx peripherals
+*/
+#define GPIOA_REG_RESET()		do{(RCC->IOPRSTR |= (1 << 0)); (RCC->IOPRSTR &= ~(1 << 0));}while(0) // Reset GPIOA peripheral
+#define GPIOB_REG_RESET()		do{(RCC->IOPRSTR |= (1 << 1)); (RCC->IOPRSTR &= ~(1 << 1));}while(0) // Reset GPIOB peripheral
+#define GPIOC_REG_RESET()		do{(RCC->IOPRSTR |= (1 << 2)); (RCC->IOPRSTR &= ~(1 << 2));}while(0) // Reset GPIOC peripheral
+#define GPIOD_REG_RESET()		do{(RCC->IOPRSTR |= (1 << 3)); (RCC->IOPRSTR &= ~(1 << 3));}while(0) // Reset GPIOD peripheral
+#define GPIOE_REG_RESET()		do{(RCC->IOPRSTR |= (1 << 4)); (RCC->IOPRSTR &= ~(1 << 4));}while(0) // Reset GPIOE peripheral
+#define GPIOF_REG_RESET()		do{(RCC->IOPRSTR |= (1 << 5)); (RCC->IOPRSTR &= ~(1 << 5));}while(0) // Reset GPIOF peripheral
+
+
 #define ENABLE 1
 #define DISABLE 0
 #define SET ENABLE
@@ -310,5 +323,6 @@ typedef struct
 #define GPIO_PIN_SET SET
 #define GPIO_PIN_RESET RESET
 
+#include "stm32g0x1_gpio_driver.h"
 
 #endif /* INC_STM32G0X1_H_ */
