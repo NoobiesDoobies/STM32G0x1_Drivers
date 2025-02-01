@@ -109,20 +109,66 @@
 #define DBG_BASEADDR						(APB2PERIPH_BASE + 0x5800)
 
 /*
- * GPIO Register Abstraction
+ * Peripheral register definition structure for GPIO
  */
 typedef struct
 {
-	uint32_t MODER; 	// GPIO port mode register	// 00: input, 01: output, 10: alt, 11: analog // 0x00 Offset
-	uint32_t TYPER; 	// GPIO port output type register	//  0: push-pull, 1: open-drain // 0x04 offset
-	uint32_t SPEEDR; 	// GPIO port output speed register // 00: very low, 01: low, 10: high, 11: high speed // 0x08 offset
-	uint32_t PUPDR; 	// GPIO port pull-up/pull-down register // 00: No pull-up, pull-down, 01: pull-up, 10: pull-down, 11: reserved
-	uint32_t IDR; 		// GPIO port input data register 				// 0x10 offset
-	uint32_t ODR; 		// GPIO port output data register 				// 0x14 offset
-	uint32_t BSRR; 		// GPIO port bit set/reset register 			// 0x18 offset
-	uint32_t LCKR; 		// GPIO port configuration lock register 		// 0x1C offset
-	uint32_t AFR[2]; 	// AF[0] : GPIO alternate function low register, AF[1] : GPIO alternate function high register
-	uint32_t BRR; 		// GPIO port bit reset register 				// 0x28 offset
+	volatile uint32_t MODER; 	// GPIO port mode register	// 00: input, 01: output, 10: alt, 11: analog // 0x00 Offset
+	volatile uint32_t TYPER; 	// GPIO port output type register	//  0: push-pull, 1: open-drain // 0x04 offset
+	volatile uint32_t SPEEDR; 	// GPIO port output speed register // 00: very low, 01: low, 10: high, 11: high speed // 0x08 offset
+	volatile uint32_t PUPDR; 	// GPIO port pull-up/pull-down register // 00: No pull-up, pull-down, 01: pull-up, 10: pull-down, 11: reserved
+	volatile uint32_t IDR; 		// GPIO port input data register 				// 0x10 offset
+	volatile uint32_t ODR; 		// GPIO port output data register 				// 0x14 offset
+	volatile uint32_t BSRR; 	// GPIO port bit set/reset register 			// 0x18 offset
+	volatile uint32_t LCKR; 	// GPIO port configuration lock register 		// 0x1C offset
+	volatile uint32_t AFR[2]; 	// AF[0] : GPIO alternate function low register, AF[1] : GPIO alternate function high register
+	volatile uint32_t BRR; 		// GPIO port bit reset register 				// 0x28 offset
 }GPIO_RegDef_t;
+
+/*
+ * Peripheral definitions (Peripheral base addresses typecasted to xxx_RegDef_t)
+ */
+
+#define GPIOA								((GPIO_RegDef_t*)GPIOA_BASEADDR)
+#define GPIOB								((GPIO_RegDef_t*)GPIOB_BASEADDR)
+#define GPIOC								((GPIO_RegDef_t*)GPIOC_BASEADDR)
+#define GPIOD								((GPIO_RegDef_t*)GPIOD_BASEADDR)
+#define GPIOE								((GPIO_RegDef_t*)GPIOE_BASEADDR)
+#define GPIOF								((GPIO_RegDef_t*)GPIOF_BASEADDR)
+
+/*
+ * Peripheral register definition structure for RCC
+*/
+
+typedef struct
+{
+	volatile uint32_t CR;					// RCC clock control register
+	volatile uint32_t ICSCR;				// RCC internal clock sources calibration register
+	volatile uint32_t CFGR;					// RCC clock configuration register
+	volatile uint32_t PLLCFGR;				// RCC PLL configuration register
+	uint32_t RESERVED1;			// Reserved 0x10 offset
+	volatile uint32_t CRRCR;				// RCC clock recovery RC register
+	volatile uint32_t CIER;					// RCC clock interrupt enable register
+	volatile uint32_t CIFR;					// RCC clock interrupt flag register
+	volatile uint32_t CICR;					// RCC clock interrupt clear register
+	volatile uint32_t IOPRSTR;				// RCC I/O port reset register
+	volatile uint32_t AHBRSTR;				// RCC AHB peripheral reset register
+	volatile uint32_t APBRSTR1;				// RCC APB peripheral reset register 1
+	volatile uint32_t APBRSTR2;				// RCC APB peripheral reset register 2
+	volatile uint32_t IOPENR;				// RCC I/O port enable register
+	volatile uint32_t AHBENR;				// RCC AHB peripheral clock enable register
+	volatile uint32_t APBENR1;				// RCC APB peripheral clock enable register 1
+	volatile uint32_t APBENR2;				// RCC APB peripheral clock enable register 2
+	volatile uint32_t IOPSMENR;				// RCC I/O port in sleep mode enable register
+	volatile uint32_t AHBSMENR;				// RCC AHB peripheral clock enable in sleep mode register
+	volatile uint32_t APBSMENR1;			// RCC APB peripheral clock enable in sleep mode register 1
+	volatile uint32_t APBSMENR2;			// RCC APB peripheral clock enable in sleep mode register 2
+	volatile uint32_t CCIPR;				// RCC clock configuration register
+	volatile uint32_t CCIPR2;				// RCC clock configuration register 2
+	volatile uint32_t BDCR;					// RCC backup domain control register
+	volatile uint32_t CSR;					// RCC control/status register
+}RCC_RegDef_t;
+
+#define RCC									((RCC_RegDef_t*)RCC_BASEADDR)
 
 #endif /* INC_STM32G0X1_H_ */
