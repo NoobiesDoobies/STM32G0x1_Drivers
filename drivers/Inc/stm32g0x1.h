@@ -303,5 +303,5 @@ typedef struct
 #define ADC_PCLK_DI()			(RCC->APBENR2 &= ~(1 << 20)) // Disable ADC peripheral clock
 
 
-/*
+
 #endif /* INC_STM32G0X1_H_ */
